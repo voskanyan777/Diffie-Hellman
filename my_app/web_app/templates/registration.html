@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Добро пожаловать</h1>
+            <p>Пожалуйста, создайте аккаунт для продолжения.</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="login-section">
+            <div class="container">
+                <h2>Регистрация</h2>
+                <form action="/register" method="post" class="login-form">
+                    <label for="username">Логин:</label>
+                    <input type="text" id="username" name="username" placeholder="Введите ваш логин" required>
+
+                    <label for="password">Пароль:</label>
+                    <input type="password" id="password" name="password" placeholder="Введите ваш пароль" required>
+
+                    <label for="password_confirm">Подтвердите пароль:</label>
+                    <input type="password" id="password_confirm" name="password_confirm" placeholder="Повторите ваш пароль" required>
+
+                    <button type="submit" class="btn">Зарегистрироваться</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Ваша Система. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>

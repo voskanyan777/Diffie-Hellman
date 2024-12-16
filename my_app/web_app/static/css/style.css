@@ -1,0 +1,76 @@
+/* styles.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f9ff;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    background: #4cafef;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+main .welcome-section {
+    text-align: center;
+    margin: 40px 0;
+}
+
+main .welcome-section h2 {
+    font-size: 2rem;
+    color: #333;
+}
+
+main .welcome-section p {
+    font-size: 1.2rem;
+    margin: 20px 0;
+    color: #555;
+}
+
+main .welcome-section .btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #4cafef;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+main .welcome-section .btn:hover {
+    background: #007bbd;
+}
+
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 520px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}

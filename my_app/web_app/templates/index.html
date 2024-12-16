@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анонимные Сообщения</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Добро пожаловать в Анонимные Сообщения</h1>
+            <p>Делитесь своими мыслями, задавайте вопросы или оставляйте отзывы, оставаясь анонимным.</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="welcome-section">
+            <div class="container">
+                <h2>Приветствуем вас!</h2>
+                <p>Это место, где вы можете свободно выражать свои мысли и идеи. Все сообщения остаются полностью анонимными. Мы гарантируем вашу конфиденциальность и безопасность.</p>
+                <a href="/login" class="btn">Создать аккаунт</a>
+                <a href="/registration" class="btn">Войти в систему</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Анонимные Сообщения. Мы уважаем вашу анонимность.</p>
+        </div>
+    </footer>
+</body>
+</html>
