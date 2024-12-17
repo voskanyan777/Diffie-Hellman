@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from web_app.views import (index, login_page, register, create_account, login,
+from web_app.views import (index, create_message, register, create_account, login,
                            messages)
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -10,4 +10,5 @@ urlpatterns = [
     path('register-account/', create_account),
     path('login/', login),
     path('messages/', messages, name='messages'),
+    path('create/', create_message, name='create'),
 ]

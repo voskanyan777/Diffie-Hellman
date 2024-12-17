@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import User, Session, AnonimMessage
 from .token import generate_token
-
+from .pass_hash import hash_password
 def index(request):
     return render(request, 'index.html')
 
@@ -18,15 +18,13 @@ def create_account(request):
     if request.method == "POST":
         login = request.POST['login']
         password = request.POST['password']
-
+        password = hash_password(password)
         if User.objects.filter(login=login).exists():
             messages.error(request, 'Пользователь с таким логином существует')
             return redirect('register')
-
         user = User(login=login, password=password)
         user.save()
 
-        messages.success(request, 'Аккаунт успешно создан')
         return redirect('login')
 
 
@@ -43,7 +41,8 @@ def login(request):
     if request.method == 'POST':
         login = request.POST.get('login')
         password = request.POST.get('password')
-
+        password = hash_password(password)
+        print(f"PASSWORD: {password}")
         try:
             user = User.objects.get(login=login, password=password)
             token = generate_token()
@@ -76,3 +75,15 @@ def messages(request):
     return render(request, 'main.html')
 
 
+def create_message(request):
+    if request.method == "POST":
+        login = request.POST.get('login')
+        message = request.POST.get('message')
+        try:
+            user = User.objects.get(login=login)
+            anon_message = AnonimMessage(user=user, message=message)
+            anon_message.save()
+            return redirect('create')
+        except User.DoesNotExist:
+            return redirect('create')
+    return render(request, 'create-message.html')
