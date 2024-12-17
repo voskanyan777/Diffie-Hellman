@@ -31,6 +31,15 @@ def create_account(request):
 
 
 def login(request):
+    token = request.COOKIES.get('auth_token')
+    if token:
+        try:
+            session = Session.objects.get(session_token=token)
+            if session.token_is_valid():
+                return redirect('messages')
+            session.delete()
+        except Session.DoesNotExist:
+            pass
     if request.method == 'POST':
         login = request.POST.get('login')
         password = request.POST.get('password')
