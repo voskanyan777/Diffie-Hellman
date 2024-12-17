@@ -1,10 +1,50 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 from .models import User, Session, AnonimMessage
 from .token import generate_token
 from .pass_hash import hash_password
+
+DH_PARAMS = None
+b = None
+B = None
+shared_secret = None
 def index(request):
-    return render(request, 'index.html')
+    global DH_PARAMS
+    global b
+    global B
+    if DH_PARAMS is None:
+        DH_PARAMS = {
+            'p': 23,
+            'g': 5
+        }
+        b = 15
+        B = (DH_PARAMS['g'] ** b) % DH_PARAMS['p']
+
+
+    # Создаем ответ и добавляем в него cookie
+    response = render(request, 'index.html')
+    # Добавляем данные DH_PARAMS в cookie
+    response.set_cookie('p', DH_PARAMS['p'])
+    response.set_cookie('g', DH_PARAMS['g'])
+
+    return response
+@csrf_exempt
+def public_key(request):
+    global shared_secret
+    global B
+    global b
+    data = json.loads(request.body)
+    client_public_key = data['public_key']
+    shared_secret = (client_public_key**b) % 23
+    print(f'Общий секрет на сервере: {shared_secret}')
+    return JsonResponse(
+        {
+            'B': B
+        }
+    )
 
 
 def login_page(request):
