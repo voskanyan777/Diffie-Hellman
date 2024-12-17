@@ -97,3 +97,15 @@ footer {
 footer p {
     margin: 0;
 }
+.messages {
+    list-style-type: none;
+    padding: 0;
+}
+
+.messages .error {
+    color: red;
+}
+
+.messages .success {
+    color: green;
+}

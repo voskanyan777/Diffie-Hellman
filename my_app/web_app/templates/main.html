@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои сообщения</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Мои сообщения</h1>
+            <p>Просмотрите все сообщения, которые вам отправили.</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="messages-section">
+            <div class="container">
+                {% if messages_list %}
+                    <ul class="messages-list">
+                        {% for message in messages_list %}
+                            <li class="message-item">
+                                <p class="message-content">{{ message.message }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="no-messages">У вас пока нет сообщений.</p>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Анонимные сообщения. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>
