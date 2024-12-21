@@ -6,45 +6,16 @@ import json
 from .models import User, Session, AnonimMessage
 from .token import generate_token
 from .pass_hash import hash_password
+from .dh_alg import DHAlgorithm
 
-DH_PARAMS = None
-b = None
-B = None
-shared_secret = None
+dh = None
+
 def index(request):
-    global DH_PARAMS
-    global b
-    global B
-    if DH_PARAMS is None:
-        DH_PARAMS = {
-            'p': 23,
-            'g': 5
-        }
-        b = 15
-        B = (DH_PARAMS['g'] ** b) % DH_PARAMS['p']
-
-
-    # Создаем ответ и добавляем в него cookie
-    response = render(request, 'index.html')
-    # Добавляем данные DH_PARAMS в cookie
-    response.set_cookie('p', DH_PARAMS['p'])
-    response.set_cookie('g', DH_PARAMS['g'])
-
-    return response
-@csrf_exempt
-def public_key(request):
-    global shared_secret
-    global B
-    global b
-    data = json.loads(request.body)
-    client_public_key = data['public_key']
-    shared_secret = (client_public_key**b) % 23
-    print(f'Общий секрет на сервере: {shared_secret}')
-    return JsonResponse(
-        {
-            'B': B
-        }
-    )
+    global dh
+    dh = DHAlgorithm()
+    dh.public_key()
+    print(f'[INFO] ---- {dh.server_public_key}')
+    return render(request,'index.html')
 
 
 def login_page(request):
@@ -127,3 +98,18 @@ def create_message(request):
         except User.DoesNotExist:
             return redirect('create')
     return render(request, 'create-message.html')
+
+@csrf_exempt  # Добавляем для обхода CSRF защиты, если нужно
+def public_keys(request):
+    global dh
+    if request.method == "POST":
+        # Получаем данные из тела запроса и парсим их как JSON
+        try:
+            data = json.loads(request.body)
+            server_public_key = data.get('public_key')
+            dh.shared_key = int(server_public_key, 10)
+            print(f'ОБЩИЙ СЕКРЕТНЫЙ КЛЮЧ {dh.shared_key}')
+
+            return JsonResponse({'public_key': str(dh.server_public_key)})
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
