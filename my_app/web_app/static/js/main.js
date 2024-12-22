@@ -38,9 +38,9 @@ class DHAlgorithm {
     }
 }
 
+export const dh = new DHAlgorithm();
 
 document.addEventListener('DOMContentLoaded', function() {
-    const dh = new DHAlgorithm();
     // Вычисление публичного ключа клиента
     dh.public_key();
     // console.log(dh.client_public_key);
@@ -57,12 +57,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const public_key = BigInt(data.public_key.toString());  // Преобразуем обратно в BigInt
         dh.set_shared_key(public_key)
         console.log(`SHARED PRIVATE KEY: ${dh.shared_key()}`)
+        // Сохраняем общий ключ в localstorage
+        localStorage.setItem("shared_private_key", dh.shared_key())
     })
     .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
     });
-});
 
+    var encryptedUsername = CryptoJS.AES.encrypt("HELLO WORLD", "321");
+    console.log("Encrypted message: ", encryptedUsername.toString());
+
+});
 
 function getCookie(name) {
     let value = `; ${document.cookie}`;

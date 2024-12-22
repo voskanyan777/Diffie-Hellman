@@ -5,18 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab5fb30b-68b7-4644-9000-3377c2120def" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ib_3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ib_3.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/my_app/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/my_app/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/my_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/my_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/web_app/dh_alg.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/dh_alg.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/web_app/static/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/static/js/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/web_app/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/web_app/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/web_app/static/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/static/js/register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/web_app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/web_app/templates/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/templates/registration.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/web_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,6 +50,7 @@
     &quot;Python.views.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/OneDrive/Рабочий стол/academy&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -92,7 +88,9 @@
       <workItem from="1734694753088" duration="5900000" />
       <workItem from="1734709743138" duration="48000" />
       <workItem from="1734710656105" duration="16000" />
-      <workItem from="1734772828527" duration="2897000" />
+      <workItem from="1734772828527" duration="5208000" />
+      <workItem from="1734793173406" duration="21000" />
+      <workItem from="1734871835732" duration="3314000" />
     </task>
     <servers />
   </component>

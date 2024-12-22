@@ -6,15 +6,12 @@ import json
 from .models import User, Session, AnonimMessage
 from .token import generate_token
 from .pass_hash import hash_password
-from .dh_alg import DHAlgorithm
+from .dh_alg import DHAlgorithm, decrypt_message
 
-dh = None
+dh = DHAlgorithm()
 
 def index(request):
-    global dh
-    dh = DHAlgorithm()
-    dh.public_key()
-    print(f'[INFO] ---- {dh.server_public_key}')
+    dh.public_key()  # Генерация публичного ключа сервера
     return render(request,'index.html')
 
 
@@ -22,14 +19,28 @@ def login_page(request):
     return render(request, 'login.html')
 
 def register(request):
+    print(f'ОБЩИЙ СЕКРЕТНЫЙ КЛЮЧ2 {dh.shared_key}')
     return render(request, 'registration.html')
 
 
 def create_account(request):
+    print(f'ОБЩИЙ СЕКРЕТНЫЙ КЛЮЧ2 {dh.shared_key}')
     if request.method == "POST":
         login = request.POST['login']
         password = request.POST['password']
-        password = hash_password(password)
+
+        # password = hash_password(password)
+
+        print(f'Зашифрованный логин: {login}')
+        print(f'Зашифрованный пароль: {password}')
+
+
+        login = decrypt_message(login, dh.shared_key)
+        password = decrypt_message(password, dh.shared_key)
+
+        print(f'Расшифрованный логин: {login}')
+        print(f'Расшифрованный пароль: {password}')
+
         if User.objects.filter(login=login).exists():
             messages.error(request, 'Пользователь с таким логином существует')
             return redirect('register')
@@ -40,6 +51,7 @@ def create_account(request):
 
 
 def login(request):
+    print(f'ОБЩИЙ СЕКРЕТНЫЙ КЛЮЧ2 {dh.shared_key}')
     token = request.COOKIES.get('auth_token')
     if token:
         try:
@@ -52,8 +64,19 @@ def login(request):
     if request.method == 'POST':
         login = request.POST.get('login')
         password = request.POST.get('password')
-        password = hash_password(password)
-        print(f"PASSWORD: {password}")
+        # password = hash_password(password)
+        # print(f"ЗАШИФРОВАННЫЙ ПАРОЛЬ: {password}")
+
+        print(f'Зашифрованный логин: {login}')
+        print(f'Зашифрованный пароль: {password}')
+
+
+        login = decrypt_message(login, dh.shared_key)
+        password = decrypt_message(password, dh.shared_key)
+
+        print(f'Расшифрованный логин: {login}')
+        print(f'Расшифрованный пароль: {password}')
+
         try:
             user = User.objects.get(login=login, password=password)
             token = generate_token()
@@ -101,7 +124,6 @@ def create_message(request):
 
 @csrf_exempt  # Добавляем для обхода CSRF защиты, если нужно
 def public_keys(request):
-    global dh
     if request.method == "POST":
         # Получаем данные из тела запроса и парсим их как JSON
         try:

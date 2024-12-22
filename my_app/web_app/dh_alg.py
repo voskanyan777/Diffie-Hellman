@@ -1,4 +1,9 @@
+import base64
 import random
+
+from Crypto.Cipher import AES
+from Crypto.Hash import MD5
+from Crypto.Util.Padding import unpad
 
 
 class DHAlgorithm:
@@ -22,3 +27,36 @@ class DHAlgorithm:
     @shared_key.setter
     def shared_key(self, client_public_key):
         self.shared_private_key = pow(client_public_key, self.server_private_b, self.p)
+
+
+def evp_key_iv(password: bytes, salt: bytes, key_len: int = 32, iv_len: int = 16):
+    """Реконструирует ключ и IV из пароля и соли по алгоритму OpenSSL EVP."""
+    d = d_i = b''
+    while len(d) < key_len + iv_len:
+        d_i = MD5.new(d_i + password + salt).digest()
+        d += d_i
+    return d[:key_len], d[key_len:key_len + iv_len]
+
+
+def decrypt_message(encrypted_message: str, private_key: str):
+    # Декодируем из Base64
+    decoded_data = base64.b64decode(encrypted_message)
+
+    private_key = b"%b" % str(private_key).encode()
+
+    # Проверяем и убираем префикс "Salted__" (если он есть)
+    assert decoded_data[:8] == b"Salted__"  # Префикс
+    salt = decoded_data[8:16]  # Соль
+    ciphertext = decoded_data[16:]  # Шифротекст
+
+    # Реконструируем ключ (примерно) на основе соли (если известна схема генерации)
+    # Для этого нужно знать, как ключ генерировался. В CryptoJS часто используется PBKDF2.
+
+    # Генерируем ключ и IV
+    key, iv = evp_key_iv(private_key, salt)
+
+    # Расшифровываем данные
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+    decrypted_data = unpad(cipher.decrypt(ciphertext), AES.block_size)
+
+    return decrypted_data.decode()
