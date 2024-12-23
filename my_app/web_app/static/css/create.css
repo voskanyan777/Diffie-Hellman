@@ -1,4 +1,38 @@
-/* Секция формы */
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
+    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Заголовок */
+header {
+    background-color: #4caf50;
+    color: white;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    margin: 10px 0 0;
+    font-size: 1.2rem;
+}
+
+/* Секция сообщений */
 .message-form-section {
     background-color: white;
     padding: 20px;
@@ -7,39 +41,54 @@
     margin-top: 20px;
 }
 
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .form-group {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 label {
-    display: block;
     font-size: 1rem;
-    color: #333;
     margin-bottom: 8px;
+    color: #333;
 }
 
 input, textarea {
-    width: 100%;
-    padding: 10px;
+    padding: 12px;
     font-size: 1rem;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 input:focus, textarea:focus {
     border-color: #4caf50;
-    outline: none;
+}
+
+textarea {
+    resize: vertical;
 }
 
 button {
-    width: 100%;
-    padding: 10px;
+    padding: 12px;
     background-color: #4caf50;
     color: white;
     border: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
+    border-radius: 8px;
+    font-size: 1rem;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 button:hover {
@@ -47,7 +96,28 @@ button:hover {
 }
 
 .error-message {
-    color: red;
+    color: #e74c3c;
     font-size: 1rem;
-    margin-top: 20px;
+    margin-top: 10px;
+}
+
+/* Подвал */
+footer {
+    margin-top: 245px;
+    padding: 10px 0;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    color:blue;
 }

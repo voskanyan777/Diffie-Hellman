@@ -19,12 +19,12 @@ def login_page(request):
     return render(request, 'login.html')
 
 def register(request):
-    print(f'ОБЩИЙ СЕКРЕТНЫЙ КЛЮЧ2 {dh.shared_key}')
+    # print(f'ОБЩИЙ СЕКРЕТНЫЙ КЛЮЧ2 {dh.shared_key}')
     return render(request, 'registration.html')
 
 
 def create_account(request):
-    print(f'ОБЩИЙ СЕКРЕТНЫЙ КЛЮЧ2 {dh.shared_key}')
+    # print(f'ОБЩИЙ СЕКРЕТНЫЙ КЛЮЧ2 {dh.shared_key}')
     if request.method == "POST":
         login = request.POST['login']
         password = request.POST['password']
@@ -51,7 +51,7 @@ def create_account(request):
 
 
 def login(request):
-    print(f'ОБЩИЙ СЕКРЕТНЫЙ КЛЮЧ2 {dh.shared_key}')
+    # print(f'ОБЩИЙ СЕКРЕТНЫЙ КЛЮЧ2 {dh.shared_key}')
     token = request.COOKIES.get('auth_token')
     if token:
         try:
@@ -92,7 +92,7 @@ def login(request):
 
     return render(request, 'login.html')
 
-def messages(request):
+def user_messages(request):
     token = request.COOKIES.get('auth_token')
     if request.method == "GET":
         try:
@@ -113,12 +113,23 @@ def create_message(request):
     if request.method == "POST":
         login = request.POST.get('login')
         message = request.POST.get('message')
+
+        print(f'Зашифрованный логин: {login}')
+        print(f'Зашифрованное сообщение: {message}')
+
+        login = decrypt_message(login, dh.shared_key)
+        message = decrypt_message(message, dh.shared_key)
+
+        print(f'Расшифрованный логин: {login}')
+        print(f'Расшифрованное сообщение: {message}')
+
         try:
             user = User.objects.get(login=login)
             anon_message = AnonimMessage(user=user, message=message)
             anon_message.save()
             return redirect('create')
         except User.DoesNotExist:
+            messages.error(request, "Пользователь с таким логином не найден")
             return redirect('create')
     return render(request, 'create-message.html')
 
