@@ -11,10 +11,10 @@ from .dh_alg import DHAlgorithm, decrypt_message
 dh = DHAlgorithm()
 
 def index(request):
-    if dh.shared_key is not None:
+    # Если общий ключ еще не сгенерирован
+    if dh.shared_key is None:
         dh.public_key()  # Генерация публичного ключа сервера
-
-    # dh.public_key()  # Генерация публичного ключа сервера
+        return render(request, 'index.html', {'clear_localstorage': True})
     return render(request,'index.html')
 
 
@@ -115,7 +115,7 @@ def user_messages(request):
         except Session.DoesNotExist:
             return redirect('login')
 
-    return render(request, 'main.html', {'user_is_auth': True})
+    return render(request, 'main.html')
 
 
 def create_message(request):

@@ -31,6 +31,14 @@
             <p>&copy; 2024 Анонимные Сообщения. Мы уважаем вашу анонимность.</p>
         </div>
     </footer>
+
+    {% if clear_localstorage %}
+        <script>
+            localStorage.clear()
+            console.log("CLEAR")
+        </script>
+    {% endif %}
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/big-integer/1.6.52/BigInteger.min.js"
             integrity="sha512-9Ep9DTmyYR7ilaRntBdTgdiAWg/hDjwbkgxjt04LAZdHWdo5k0eQoxmvdjz99hPSvh7R2M2LWk3DvaWer6f9mA=="
