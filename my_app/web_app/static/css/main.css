@@ -86,3 +86,12 @@ footer {
 footer p {
     margin: 0;
 }
+
+a{
+    text-decoration: none;
+    color: yellow;
+}
+
+a:hover{
+
+}
