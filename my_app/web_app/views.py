@@ -38,8 +38,11 @@ def create_account(request):
         login = decrypt_message(login, dh.shared_key)
         password = decrypt_message(password, dh.shared_key)
 
+
         print(f'Расшифрованный логин: {login}')
         print(f'Расшифрованный пароль: {password}')
+
+        password = hash_password(password)
 
         if User.objects.filter(login=login).exists():
             messages.error(request, 'Пользователь с таким логином существует')
@@ -74,8 +77,11 @@ def login(request):
         login = decrypt_message(login, dh.shared_key)
         password = decrypt_message(password, dh.shared_key)
 
+
         print(f'Расшифрованный логин: {login}')
         print(f'Расшифрованный пароль: {password}')
+
+        password = hash_password(password)
 
         try:
             user = User.objects.get(login=login, password=password)

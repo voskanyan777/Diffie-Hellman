@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0110b0a-71e7-404f-bb00-ec5750def54e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/web_app/static/css/create.css" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/static/css/create.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/web_app/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/web_app/static/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/static/js/register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/web_app/templates/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/templates/registration.html" afterDir="false" />
-    </list>
+    <list default="true" id="e0110b0a-71e7-404f-bb00-ec5750def54e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,7 +54,7 @@
       <workItem from="1734933616050" duration="334000" />
       <workItem from="1734934682090" duration="1303000" />
       <workItem from="1734941416823" duration="596000" />
-      <workItem from="1735022970513" duration="325000" />
+      <workItem from="1735022970513" duration="900000" />
     </task>
     <servers />
   </component>
