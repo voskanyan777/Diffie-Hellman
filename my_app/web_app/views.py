@@ -11,7 +11,10 @@ from .dh_alg import DHAlgorithm, decrypt_message
 dh = DHAlgorithm()
 
 def index(request):
-    dh.public_key()  # Генерация публичного ключа сервера
+    if dh.shared_key is not None:
+        dh.public_key()  # Генерация публичного ключа сервера
+
+    # dh.public_key()  # Генерация публичного ключа сервера
     return render(request,'index.html')
 
 
@@ -60,7 +63,7 @@ def login(request):
         try:
             session = Session.objects.get(session_token=token)
             if session.token_is_valid():
-                return redirect('messages')
+                return render(request, "main.html", {'user_is_auth': True})
             session.delete()
         except Session.DoesNotExist:
             pass
@@ -112,7 +115,7 @@ def user_messages(request):
         except Session.DoesNotExist:
             return redirect('login')
 
-    return render(request, 'main.html')
+    return render(request, 'main.html', {'user_is_auth': True})
 
 
 def create_message(request):
@@ -152,3 +155,8 @@ def public_keys(request):
             return JsonResponse({'public_key': str(dh.server_public_key)})
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Invalid JSON'}, status=400)
+
+def logout(request):
+    response = redirect('index')
+    response.delete_cookie('auth_token', path='/', samesite='Strict')
+    return response

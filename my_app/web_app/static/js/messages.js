@@ -1,4 +1,5 @@
 document.getElementById('login-form').addEventListener('submit', function (event) {
+
     // Останавливаем отправку формы, чтобы выполнить шифрование
     event.preventDefault();
 

@@ -41,6 +41,10 @@ class DHAlgorithm {
 export const dh = new DHAlgorithm();
 
 document.addEventListener('DOMContentLoaded', function() {
+    const key = localStorage.getItem('shared_private_key')
+    if (key !== null){
+        return;
+    }
     // Вычисление публичного ключа клиента
     dh.public_key();
     // console.log(dh.client_public_key);

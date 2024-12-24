@@ -13,6 +13,9 @@
             <h1>Мои сообщения</h1>
             <p>Просмотрите все сообщения, которые вам отправили.</p>
             <a href="/create"><p>Написать анонимное сообщение</p></a>
+            {% if user_is_auth %}
+                <a href="/logout"><button id="exit-btn">Выход</button></a>
+            {% endif %}
         </div>
     </header>
 
@@ -39,5 +42,6 @@
             <p>&copy; 2024 Анонимные сообщения. Все права защищены.</p>
         </div>
     </footer>
+    <script src="{% static 'js/main_page.js' %}"></script>
 </body>
 </html>
