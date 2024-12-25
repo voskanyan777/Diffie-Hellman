@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0110b0a-71e7-404f-bb00-ec5750def54e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/my_app/web_app/static/js/main_page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ib_3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ib_3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/my_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/my_app/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app/web_app/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/templates/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/my_app/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/my_app/asgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/my_app/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/my_app/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/web_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/web_app/dh_alg.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/dh_alg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/web_app/pass_hash.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/pass_hash.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_app/web_app/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_app/web_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app/web_app/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +77,12 @@
       <workItem from="1734933616050" duration="334000" />
       <workItem from="1734934682090" duration="1303000" />
       <workItem from="1734941416823" duration="596000" />
-      <workItem from="1735022970513" duration="2896000" />
+      <workItem from="1735022970513" duration="5701000" />
+      <workItem from="1735088945250" duration="343000" />
+      <workItem from="1735091892276" duration="2914000" />
+      <workItem from="1735098428347" duration="440000" />
+      <workItem from="1735105335400" duration="6590000" />
+      <workItem from="1735122989381" duration="638000" />
     </task>
     <servers />
   </component>

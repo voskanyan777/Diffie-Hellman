@@ -3,7 +3,7 @@ import random
 
 from Crypto.Cipher import AES
 from Crypto.Hash import MD5
-from Crypto.Util.Padding import unpad
+from Crypto.Util.Padding import unpad, pad
 
 
 class DHAlgorithm:
@@ -60,3 +60,28 @@ def decrypt_message(encrypted_message: str, private_key: str):
     decrypted_data = unpad(cipher.decrypt(ciphertext), AES.block_size)
 
     return decrypted_data.decode()
+
+def encrypt_message(message: str, private_key: str):
+    # Преобразуем приватный ключ в байты
+    private_key = b"%b" % str(private_key).encode()
+
+    # Генерируем соль (random 8 байт)
+    salt = bytes([random.randint(0, 255) for _ in range(8)])
+
+    # Генерируем ключ и IV на основе приватного ключа и соли
+    key, iv = evp_key_iv(private_key, salt)
+
+    # Создаем шифратор AES с режимом CBC
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+
+    # Паддинг для соответствия блочному размеру AES
+    padded_message = pad(message.encode(), AES.block_size)
+
+    # Шифруем данные
+    encrypted_data = cipher.encrypt(padded_message)
+
+    # Конкатенируем "Salted__" + соль + шифротекст
+    encrypted_message = b"Salted__" + salt + encrypted_data
+
+    # Кодируем в Base64
+    return base64.b64encode(encrypted_message).decode()

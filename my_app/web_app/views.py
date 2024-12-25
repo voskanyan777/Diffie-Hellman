@@ -22,17 +22,13 @@ def login_page(request):
     return render(request, 'login.html')
 
 def register(request):
-    # print(f'ОБЩИЙ СЕКРЕТНЫЙ КЛЮЧ2 {dh.shared_key}')
     return render(request, 'registration.html')
 
 
 def create_account(request):
-    # print(f'ОБЩИЙ СЕКРЕТНЫЙ КЛЮЧ2 {dh.shared_key}')
     if request.method == "POST":
         login = request.POST['login']
         password = request.POST['password']
-
-        # password = hash_password(password)
 
         print(f'Зашифрованный логин: {login}')
         print(f'Зашифрованный пароль: {password}')
@@ -57,7 +53,6 @@ def create_account(request):
 
 
 def login(request):
-    # print(f'ОБЩИЙ СЕКРЕТНЫЙ КЛЮЧ2 {dh.shared_key}')
     token = request.COOKIES.get('auth_token')
     if token:
         try:
@@ -70,8 +65,6 @@ def login(request):
     if request.method == 'POST':
         login = request.POST.get('login')
         password = request.POST.get('password')
-        # password = hash_password(password)
-        # print(f"ЗАШИФРОВАННЫЙ ПАРОЛЬ: {password}")
 
         print(f'Зашифрованный логин: {login}')
         print(f'Зашифрованный пароль: {password}')
@@ -92,7 +85,6 @@ def login(request):
             session = Session(user=user, session_token=token)
             session.save()
 
-            # Добавляем токен в куки
             response = redirect('messages')
             response.set_cookie('auth_token', token, httponly=True, secure=True, samesite='Strict')
             return response
@@ -140,12 +132,22 @@ def create_message(request):
         except User.DoesNotExist:
             messages.error(request, "Пользователь с таким логином не найден")
             return redirect('create')
-    return render(request, 'create-message.html')
+    if request.method == "GET":
+        token = request.COOKIES.get('auth_token')
+        try:
+            session = Session.objects.get(session_token=token)
+            if not session.token_is_valid():
+                return redirect('login')
+            user = session.user
+            message = AnonimMessage.objects.filter(user=user)
+            return render(request, 'main.html', context={"messages_list": message})
+        # Если токен не нашелся
+        except Session.DoesNotExist:
+            return redirect('login')
 
-@csrf_exempt  # Добавляем для обхода CSRF защиты, если нужно
+@csrf_exempt
 def public_keys(request):
     if request.method == "POST":
-        # Получаем данные из тела запроса и парсим их как JSON
         try:
             data = json.loads(request.body)
             server_public_key = data.get('public_key')
